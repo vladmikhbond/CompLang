@@ -1,0 +1,26 @@
+#memo {
+  padding: 10px;
+  float: left; 
+  width: 150px;
+}
+
+#dash {
+  float: left; width: 200px;
+}
+
+input[type=text] {
+  width: 60px;
+  text-align: right;
+}
+
+.register {
+  width: 100px;
+  text-align: right;
+}
+
+label {
+  font-size: small;
+}
+.sel {
+  background-color: yellow;
+}

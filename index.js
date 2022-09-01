@@ -15,7 +15,7 @@ function initGUI()
       const div = document.createElement("div");
       div.innerHTML = `<label>${('000' + i).slice(-4)} </label>` +
       `<input id="a${i}" type="text" </input>` +
-      `<span id="p${i}" style="display: none"> ◄ </span>`
+      `<span style="display: none"> ◄ </span>`
       memo.appendChild(div);
 
       div.children[1].addEventListener('change', function() {

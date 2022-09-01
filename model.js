@@ -2,6 +2,8 @@ class Model {
    constructor(size) {
       this.size = size;
       this.clear();
+      // in memo are strings like "dd dddd" where d is a digit
+      this.memo = new Array(size).fill('00 0000');
 
       ///
       this.memo[0] = "01 0010";
@@ -21,7 +23,7 @@ class Model {
             this.counter++;
             break;
          case 2: 
-            this.memo[address] = toMemo (+this.summator)
+            this.toMemo(address, +this.summator);
             this.counter++;
             break;
          case 3: 
@@ -41,10 +43,14 @@ class Model {
       this.summator = 0;
    }
 
+   toMemo(addr, num) {
+      let co = ('00' + ((num / 10000) | 0)).slice(-2);
+      let ad = ('0000' + (num % 10000)).slice(-4);
+      this.memo[addr] = co + ' ' + ad;
+   }
+
+   // fromMemo(addr) {
+   //    return +this.memo[addr].replace(' ', '');
+   // }
 }
 
-function toMemo(n) {
-   let comm = ('00' + ((n / 10000) | 0)).slice(-2);
-   let addr = ('0000' + (n % 10000)).slice(-4);
-   return comm + ' ' + addr;
-}

@@ -1,29 +1,30 @@
+const A = 4;  // addresss length
+
 class Model {
    constructor(size) {
       this.size = size;
       this.clear();
       // in memo are strings like "dd dddd" where d is a digit
-      this.memo = new Array(size).fill('00 0000');
+      this.memo = new Array(size).fill(0);
 
       ///
-      this.memo[0] = "01 0010";
-      this.memo[1] = "03 0002";
-      this.memo[2] = "02 0011";
-      this.memo[10]= "00 1234";
-      
+      this.memo[0] = 10010;
+      this.memo[1] = 30002;
+      this.memo[2] = 20011;
+      this.memo[10]= "001234";
+      this.memo[3]=  "110000";
    }
 
    step() {
-      
-      let command = + this.memo[this.counter].slice(0, 2);
-      let address = + this.memo[this.counter].slice(3, 7);
+      let command = + (this.memo[this.counter] / 10**A) | 0;
+      let address = + (this.memo[this.counter]) % 10**A;
       switch (command) {
          case 1: 
-            this.summator = +this.memo[address].replace( ' ', '');
+            this.summator = +this.memo[address];
             this.counter++;
             break;
          case 2: 
-            this.toMemo(address, +this.summator);
+            this.memo[address] = +this.summator;
             this.counter++;
             break;
          case 3: 
@@ -38,19 +39,10 @@ class Model {
    } 
 
    clear() {
-      this.memo = new Array(this.size).fill('00 0000');
+      this.memo = new Array(this.size).fill(0);
       this.counter = 0;
       this.summator = 0;
    }
 
-   toMemo(addr, num) {
-      let co = ('00' + ((num / 10000) | 0)).slice(-2);
-      let ad = ('0000' + (num % 10000)).slice(-4);
-      this.memo[addr] = co + ' ' + ad;
-   }
-
-   // fromMemo(addr) {
-   //    return +this.memo[addr].replace(' ', '');
-   // }
 }
 

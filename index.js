@@ -3,12 +3,7 @@ const model = new Model(20);
 initGUI();
 show();
 
-const clearBtn = document.getElementById('clearBtn');
-const stepBtn = document.getElementById('stepBtn');
-
 counter.addEventListener('change', () => {model.counter = counter.value; show(); } );
-
-
 stepBtn.addEventListener('click', () => {model.step(); show(); } );
 clearBtn.addEventListener('click', () => {model.clear(); show(); } );
 
@@ -26,7 +21,7 @@ function initGUI()
       div.children[1].addEventListener('change', function() {
             let i = this.id.slice(1);
             this.style.color =  model.memo[i] == this.value ? "black" : "red";
-            model.toMemo(i, this.value.replace(/\s/, '')); 
+            model.memo[i] = +this.value.replace(/\s/, '');
             show();
          });
    }
@@ -41,15 +36,29 @@ function show() {
    for (let i = 0; i < model.size; i++) 
    {
       const el = document.getElementById('a' + i);
+      let oldValue = str2num(el.value);
       el.style.color = 
-         model.memo[i] == "00 0000" ? "gray" : 
-         model.memo[i] == el.value ? "black" : 
+         model.memo[i] == 0 ? "gray" : 
+         model.memo[i] == oldValue ? "black" : 
          "red";
-      el.value = model.memo[i];
+      el.value = num2str(model.memo[i]);
       
-      // pointer position
+      // set pointer
       el.nextSibling.style.display = i == model.counter ? "inline" : "none";
    }
 }
 
+
+function num2str(num) {
+   const N = 10**A;
+   return lead(num / N, 2) + ' ' + lead(num % N, A);
+
+   function lead(num, k) {
+      return ('000000000' + (num | 0)).slice(-k);
+   } 
+}
+
+function str2num(str) {
+   return +str.replace(/\s/, '')
+}
 

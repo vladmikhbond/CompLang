@@ -17,7 +17,7 @@ function initGUI()
    {
       // label
       const label = document.createElement("label");
-      label.innerHTML = ('000' + i).slice(-4) + '. ';
+      label.innerHTML = ('000' + i).slice(-4) + ' ';
       // input
       const input = document.createElement("input");
       input.type = 'text';   
@@ -27,10 +27,15 @@ function initGUI()
          model.memo[i] = this.value; 
          this.style.color = this.value == "00 0000" ? "lightgray" : "black";
       }
+      // pointer
+      const pointer = document.createElement("span");
+      pointer.innerHTML = " ◄ ";
+      pointer.style.display = "none";
       // div
       const div = document.createElement("div");
       div.appendChild(label);
       div.appendChild(input);
+      div.appendChild(pointer);
       memo.appendChild(div);
    }
 }
@@ -47,6 +52,7 @@ function show() {
       el.value = model.memo[i];
       el.className = i == model.counter ? "sel" : "";
       el.style.color = model.memo[i] == "00 0000" ? "lightgray" : "black";
+      el.nextSibling.style.display = i == model.counter ? "inline" : "none";
    }
 }
 

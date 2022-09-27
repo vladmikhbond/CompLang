@@ -4,6 +4,7 @@ initGUI();
 show();
 
 counter.addEventListener('change', () => {model.counter = counter.value; show(); } );
+summator.addEventListener('change', () => {model.summator = +summator.value; } );
 stepBtn.addEventListener('click', () => {model.step(); show(); } );
 clearBtn.addEventListener('click', () => {model.clear(); show(); } );
 

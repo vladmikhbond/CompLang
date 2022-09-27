@@ -8,10 +8,11 @@ class Model {
 
       // test
       this.memo[0] = 10010;
-      this.memo[1] = 30002;
-      this.memo[2] = 20011;
-      this.memo[10]= "001234";
-      this.memo[3]=  "110000";
+      this.memo[1] = 30011;
+      this.memo[2] = 20012;
+      this.memo[10]= "000025";
+      this.memo[11]= "000010";
+      // this.memo[3]=  "110000";
    }
    
    
@@ -28,7 +29,7 @@ class Model {
             this.counter++;
             break;
          case 3:  // 03 - додати до суматора
-            this.summator += address;
+            this.summator += +this.memo[address];
             this.counter++;
             break;
          case 11: // 11 - перейти
